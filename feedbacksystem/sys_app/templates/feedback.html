@@ -1,0 +1,69 @@
+{% extends 'home.html' %}
+{% block title %}
+<div class="home">
+    <h1>FEEDBACK</h1>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="feedpage">
+    <div class="feed1">
+        <form method="post" novalidate>
+            {% csrf_token%}
+            <table>
+                <caption>Write Your Feedback Here :</caption>
+                {% for i in feedback %}
+                <tr>
+                    <td>{{i.label_tag}}</td>
+                    {% if i.name == 'username' %}
+                            {% if user.is_authenticated %}
+                                <td><input type="text" name="{{ i.name }}" value="{{ user.username }}" readonly></td>
+                            {% else %}
+                                <td><input type="text" name="{{ i.name }}" readonly></td>
+                            {% endif %}
+                        {% else %}
+                    <td>{{i}}</td>
+                          {% endif %}
+                    <td>{{i.errors}}</td>
+                </tr>
+                {% endfor %}
+            </table>
+            <input type="submit">
+
+        </form>
+    </div>
+
+    <div class="feed2">
+        <div class="hard">
+            <h3> Student Testimonials :</h3>
+            {% for i in show %}
+            <div class="card">
+                <br><br>
+                Student : {{i.username}}<br><br>
+                <div class="cont">
+                    {{i.feedback}}<br><br>
+                </div>
+                {{i.created_date}}<br><br>
+
+            </div>
+            <br>
+            {% endfor %}
+
+        </div>
+    </div>
+
+
+</div>
+
+
+   {% if not user.is_authenticated %}
+        <script>
+            alert("Please Sign-in to provide feedback.");
+             window.location.href = "{% url 'signin' %}";
+        </script>
+    {% endif %}
+
+{% endblock %}
+
+
+

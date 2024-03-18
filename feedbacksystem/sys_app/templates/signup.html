@@ -1,0 +1,29 @@
+{% extends 'home.html' %}
+{% block title %}
+<div class="home">
+    <h1>REGISTER YOURSELF!!!</h1>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="signup">
+    <form method="post">
+        {% csrf_token%}
+        <!-- {{signin}} -->
+        <table>
+            <caption>SIGN UP HERE :</caption>
+            {% for i in signin %}
+            <tr>
+                <td>{{i.label_tag}}</td>
+                <td>{{i}}</td>
+                <td>{{i.errors}}</td>
+            </tr>
+            {% endfor %}
+
+
+        </table>
+        <input type="submit" value="Register">
+    </form>
+</div>
+
+{% endblock %}

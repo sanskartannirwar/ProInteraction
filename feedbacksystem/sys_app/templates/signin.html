@@ -1,0 +1,30 @@
+{% extends 'home.html' %}
+{% block title %}
+<div class="home">
+    <h1>SIGNIN</h1>
+</div>
+{% endblock %}
+
+
+{% block content %}
+<div class="signup">
+    <form method="post" novalidate>
+        {% csrf_token%}
+        <table>
+            <caption>LOGIN HERE :</caption>
+            {% for i in user_data %}
+            <tr>
+                <td>{{i.label_tag}}</td>
+                <td>{{i}}</td>
+                <td>{{i.errors}}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        <input type="submit" value="Log-in">
+        <p>Don't have an account? <a href="{%url 'signup' %}">Register</a></p>
+    </form>
+</div>
+
+{% endblock %}
+
+
