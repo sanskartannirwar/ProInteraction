@@ -1,4 +1,4 @@
-# Feedback-System
+# ProInteraction
 This is django based feedback System of a institute placed in pune.
 This is interaction between user and institute.
 User can give reviews  & signup /signin  .
